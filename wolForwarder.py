@@ -5,6 +5,8 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 from wakeonlan import send_magic_packet
 import os
+import requests
+
 
 load_dotenv()
 TELEGRAM_API_TOKEN = os.getenv("TELEGRAM_API_TOKEN") or ''
@@ -16,7 +18,8 @@ if not TELEGRAM_API_TOKEN:
 
 async def wakePc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     send_magic_packet('B4.2E.99.A1.21.2F')
-    await update.message.reply_text('Trying to wake PC...')
+    ip = requests.get("https://api.ipify.org", timeout=5).text
+    await update.message.reply_text(f'Trying to wake PC...\nCurrent IP: {ip}')
 
 
 def main() -> None:
