@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to your virtual environment
-VENV_PATH="./venv"
+VENV_PATH="./.venv"
 
 # Path to your Python script
 SCRIPT_PATH="./wolForwarder.py"
