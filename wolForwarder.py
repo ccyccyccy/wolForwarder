@@ -7,7 +7,11 @@ from wakeonlan import send_magic_packet
 import os
 
 load_dotenv()
-TELEGRAM_API_TOKEN = os.getenv("TELEGRAM_API_TOKEN")
+TELEGRAM_API_TOKEN = os.getenv("TELEGRAM_API_TOKEN") or ''
+
+if not TELEGRAM_API_TOKEN:
+    print("NO API TOKEN. EXITING...")
+    exit()
 
 
 async def wakePc(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
